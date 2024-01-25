@@ -1,0 +1,91 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.eslint.json",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true
+    },
+    "extraFileExtensions": [".md", ".json"]
+  },
+  "env": {
+    "node": true,
+    "es6": true,
+    "jest/globals": true
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "unused-imports",
+    "jest",
+    "prettier",
+    "eslint-plugin-json"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended",
+    "plugin:json/recommended-with-comments",
+    "adjunct"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "arrowParens": "always"
+      }
+    ],
+    // Always either 'await' or '.catch' after calling a promise. Very useful.
+    "@typescript-eslint/no-floating-promises": "error",
+
+    // ESLint default rules get confused about types.
+    "no-unused-vars": "off",
+
+    // Constant loops are needed for common "control loop" structures.
+    "no-constant-condition": ["error", {
+      "checkLoops": false
+    }],
+
+    // Only allow either PascalCase or camelCase file names.
+    "unicorn/filename-case": [
+      "error",
+      {
+        "cases": {
+          "camelCase": true,
+          "pascalCase": true
+        }
+      }
+    ],
+
+    // Causes false-positives in test cases often enough that it's not very
+    // useful. Usually disallows long, high-entropy strings.
+    "no-secrets/no-secrets": "off",
+
+    // In some cases, type safety is lost when you're forced to pass in
+    // functions directly rather than wrapped.
+    "lodash-fp/no-extraneous-function-wrapping": "off",
+
+    // It's useful to be able to define anonymous functions.
+    "unicorn/consistent-function-scoping": "off",
+
+    // Property shorthands are not (currently) type-safe in lodash. They also
+    // do not automatically update if e.g. you change the underlying variable
+    // name.
+    "lodash/prop-shorthand": ["error", "never"],
+    "lodash/matches-prop-shorthand": ["error", "never"],
+
+    // Lodash invocations should be explicit due to the very general nature of its function names.
+    "lodash/import-scope": "off",
+
+    // Disallow unused imports
+    "unused-imports/no-unused-imports-ts": "warn",
+
+    // Please be as explicit as you possibly can with undefined.
+    "unicorn/no-useless-undefined": "off",
+
+    "simple-import-sort/exports": "off",
+    "simple-import-sort/imports": "off"
+  }
+}
