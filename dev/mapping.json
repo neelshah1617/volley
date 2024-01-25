@@ -1,0 +1,6 @@
+{
+        "DeviceName": "/dev/sda",
+        "Ebs": {
+            "VolumeSize": 100
+        }
+}
